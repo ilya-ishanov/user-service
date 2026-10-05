@@ -1,0 +1,23 @@
+package com.ilya.user_service.filter.recommendation;
+
+import org.springframework.stereotype.Component;
+import com.ilya.user_service.dto.recommendation.RecommendationFilterDto;
+import com.ilya.user_service.entity.recommendation.Recommendation;
+
+import java.util.stream.Stream;
+
+@Component
+public class RecommendationReceiverIdFiller implements RecommendationFilter {
+    @Override
+    public boolean isApplicable(RecommendationFilterDto recommendationFilterDto) {
+        return recommendationFilterDto.getReceiverId() != null;
+    }
+
+    @Override
+    public Stream<Recommendation> apply(Stream<Recommendation> stream,
+                                        RecommendationFilterDto recommendationDto) {
+        return stream
+                .filter(recommendation -> recommendationDto.getReceiverId()
+                        .equals(recommendation.getReceiver().getId()));
+    }
+}

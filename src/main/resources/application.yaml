@@ -34,4 +34,9 @@ project-service:
 
 payment-service:
   host: localhost
-  port: 9080
+  port:
+
+springdoc:
+  swagger-ui:
+    path=/swagger-ui:
+      html:
